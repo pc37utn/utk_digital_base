@@ -36,7 +36,7 @@ cp "$SHARED_DIR"/configs/kdu_libs.conf /etc/ld.so.conf.d/kdu_libs.conf
 
 # Sleep for 60 while Tomcat restart
 echo "Sleeping for 60 while Tomcat stack restarts"
-service tomcat restart
+systemctl restart tomcat
 sleep 60
 
 # Logging

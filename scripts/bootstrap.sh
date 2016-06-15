@@ -37,14 +37,7 @@ JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment
 
 # Maven
-wget http://download.nextag.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-sudo tar xzf apache-maven-3.3.9-bin.tar.gz -C /usr/local
-cd /usr/local
-sudo ln -s apache-maven-3.3.9 maven
-# 
-touch /etc/profile.d/maven.sh
-
-echo 'export M2_HOME=/usr/local/maven \ export PATH=${M2_HOME}/bin:${PATH}' > /etc/profile.d/maven.sh
+yum -y install maven
 
 # Tomcat - from the epel repo
 yum -y install tomcat tomcat-admin-webapps
@@ -64,14 +57,14 @@ yum -y install htop tree zsh
 #debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
 
 # Lamp server
-yum install mysql-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient
-chkconfig mysqld on
-chkconfig httpd on
-service mysqld restart
-service httpd restart
+yum install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient
+systemctl enable mariadb
+systemctl enable httpd
+systemctl start mariadb
+systemctl start httpd
 
 usermod -a -G apache vagrant
-sudo mysqladmin -u root password islandora
+mysqladmin -u root password islandora
 
 echo "CREATE DATABASE fedora3" | mysql -uroot -pislandora
 echo "CREATE USER 'fedoraAdmin'@'localhost' IDENTIFIED BY 'fedoraAdmin'" | mysql -uroot -pislandora

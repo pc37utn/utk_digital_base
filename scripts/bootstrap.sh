@@ -64,8 +64,11 @@ yum -y install htop tree zsh
 #debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
 
 # Lamp server
-#tasksel install lamp-server
 yum install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient
+systemctl enable mariadb
+systemctl enable httpd
+systemctl start mariadb
+systemctl start httpd
 
 usermod -a -G apache vagrant
 sudo mysqladmin -u root password islandora

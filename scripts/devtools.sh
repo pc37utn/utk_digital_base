@@ -2,11 +2,9 @@
 
 # Sets up a developer environment
 
-# Set apt-get for non-interactive mode
-export DEBIAN_FRONTEND=noninteractive
 
 # Install doxygen and pear for installing PHP_CodeSniffer
-apt-get install -y php-pear doxygen
+yum -y install php-pear doxygen
 
 # Create a configuration script to help get a Git environment set up
 sudo tee /usr/local/bin/git-config > /dev/null << GIT_CONFIG_EOF

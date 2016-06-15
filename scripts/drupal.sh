@@ -8,38 +8,40 @@ if [ -f "$SHARED_DIR/configs/variables" ]; then
   . "$SHARED_DIR"/configs/variables
 fi
 
-# Set apt-get for non-interactive mode
-export DEBIAN_FRONTEND=noninteractive
-
 # Apache configuration file
-export APACHE_CONFIG_FILE=/etc/apache2/sites-enabled/000-default.conf
+#export APACHE_CONFIG_FILE=/etc/apache2/sites-enabled/000-default.conf
+export APACHE_CONFIG_FILE=/etc/httpd/conf/httpd.conf
+
 
 # Drush and drupal deps
-apt-get -y install php5-gd php5-dev php5-xsl php-soap php5-curl php5-imagick imagemagick lame libimage-exiftool-perl bibutils poppler-utils
+yum -y install php-gd php-devel php-xml php-soap php-curl 
+yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler-utils
 pecl install uploadprogress
-sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php5/apache2/php.ini
-apt-get -y install drush
-a2enmod rewrite
-service apache2 reload
+sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
+# drush 6.7 from epel
+yum -y install drush
+#yum -y install mod_rewrite
+#a2enmod rewrite
+service httpd reload
 cd /var/www
 
 # Download Drupal
 drush dl drupal --drupal-project-rename=drupal
 
 # Permissions
-chown -R www-data:www-data drupal
+chown -R apache:apache drupal
 chmod -R g+w drupal
 
 # Do the install
 cd drupal
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-development.org
 drush user-password admin --password=islandora
-
+#================================ NEXT HERE
 # Enable proxy module
-ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
-ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled/proxy_http.load
-ln -s /etc/apache2/mods-available/proxy_html.load /etc/apache2/mods-enabled/proxy_html.load
-ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
+#ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
+#ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled/proxy_http.load
+#ln -s /etc/apache2/mods-available/proxy_html.load /etc/apache2/mods-enabled/proxy_html.load
+#ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 
 # Set document root
 sed -i "s|DocumentRoot /var/www/html$|DocumentRoot $DRUPAL_HOME|" $APACHE_CONFIG_FILE
@@ -50,10 +52,10 @@ if [ "$(grep -c "ProxyPass" $APACHE_CONFIG_FILE)" -eq 0 ]; then
 
 sed -i 's#<VirtualHost \*:80>#<VirtualHost \*:8000>#' $APACHE_CONFIG_FILE
 
-sed -i 's/Listen 80/Listen \*:8000/' /etc/apache2/ports.conf
+sed -i 's/Listen 80/Listen \*:8000/' /etc/httpd/conf.d/ports.conf
 
 sed -i "/Listen \*:8000/a \
-NameVirtualHost \*:8000" /etc/apache2/ports.conf 
+NameVirtualHost \*:8000" /etc/httpd/conf.d/ports.conf 
 
 read -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
 	ServerAlias islandora-vagrant
@@ -93,7 +95,7 @@ fi
 rm /var/www/html/index.html
 
 # Cycle apache
-service apache2 restart
+service httpd restart
 
 # Make the modules directory
 if [ ! -d sites/all/modules ]; then
@@ -109,12 +111,12 @@ drush dl coder-7.x-2.5
 drush -y en coder
 
 # php.ini templating
-cp -v "$SHARED_DIR"/configs/php.ini /etc/php5/apache2/php.ini
+cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini
 
-service apache2 restart
+service httpd restart
 
 # sites/default/files ownership
-chown -hR www-data:www-data "$DRUPAL_HOME"/sites/default/files
+chown -hR apache:apache "$DRUPAL_HOME"/sites/default/files
 
 # Run cron
 cd "$DRUPAL_HOME"/sites/all/modules

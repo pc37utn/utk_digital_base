@@ -37,14 +37,7 @@ JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment
 
 # Maven
-wget http://download.nextag.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-sudo tar xzf apache-maven-3.3.9-bin.tar.gz -C /usr/local
-cd /usr/local
-sudo ln -s apache-maven-3.3.9 maven
-# 
-touch /etc/profile.d/maven.sh
-
-echo 'export M2_HOME=/usr/local/maven \ export PATH=${M2_HOME}/bin:${PATH}' > /etc/profile.d/maven.sh
+yum install maven
 
 # Tomcat - from the epel repo
 yum -y install tomcat tomcat-admin-webapps

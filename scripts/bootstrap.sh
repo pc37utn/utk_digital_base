@@ -65,7 +65,7 @@ yum -y install htop tree zsh
 
 # Lamp server
 #tasksel install lamp-server
-yum install mysql-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient
+yum install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient
 
 usermod -a -G apache vagrant
 sudo mysqladmin -u root password islandora

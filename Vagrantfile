@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+  config.vm.provider "virtualbox" do |v|
+    v.name = "Islandora 7.x-1.x Base VM"
+  end
+  config.vm.hostname = "islandora"
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "boxcutter/centos71"
+
+  config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
+  config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
+  config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--memory", '3000']
+    vb.customize ["modifyvm", :id, "--cpus", "2"]   
+  end
+
+
+  shared_dir = "/vagrant"
+
+  #config.vm.provision :shell, inline: "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile", :privileged =>false
+  config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/devtools.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/fits.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
+  #config.vm.provision :shell, path: "./scripts/post.sh"
+
+  if File.exist?("./scripts/custom.sh") then
+    config.vm.provision :shell, path: "./scripts/custom.sh", :args => shared_dir
+  end
+end

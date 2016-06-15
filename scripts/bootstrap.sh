@@ -37,7 +37,7 @@ JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment
 
 # Maven
-yum install maven
+yum -y install maven
 
 # Tomcat - from the epel repo
 yum -y install tomcat tomcat-admin-webapps

@@ -9,12 +9,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   config.vm.provider "virtualbox" do |v|
-    v.name = "Islandora 7.x-1.x Base VM"
+    v.name = "Islandora 7.x-1.x Base Centos VM"
   end
   config.vm.hostname = "islandora"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "boxcutter/centos71"
+  config.vm.box = "centos/7"
 
   config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
   config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL

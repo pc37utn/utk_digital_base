@@ -37,18 +37,18 @@ JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment
 
 # Maven
-yum -y install maven
+sudo yum -y install maven
 
 # Tomcat - from the epel repo
-yum -y install tomcat tomcat-admin-webapps
-usermod -a -G tomcat vagrant
+sudo yum -y install tomcat tomcat-admin-webapps
+sudo usermod -a -G tomcat vagrant
 
 # We still need this for the rest of the times Tomcat is run in the other build scripts
 sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat
 
 
 # More helpful packages
-yum -y install htop tree zsh 
+sudo yum -y install htop tree zsh 
 
 # Set some params so it's non-interactive for the lamp-server install
 #debconf-set-selections <<< 'mysql-server mysql-server/root_password password islandora'
@@ -57,11 +57,11 @@ yum -y install htop tree zsh
 #debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
 
 # Lamp server
-yum install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient
-systemctl enable mariadb
-systemctl enable httpd
-systemctl start mariadb
-systemctl start httpd
+sudo yum -y install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient
+sudo systemctl enable mariadb
+sudo systemctl enable httpd
+sudo systemctl start mariadb
+sudo systemctl start httpd
 
 usermod -a -G apache vagrant
 mysqladmin -u root password islandora
@@ -72,7 +72,7 @@ echo "GRANT ALL ON fedora3.* TO 'fedoraAdmin'@'localhost'" | mysql -uroot -pisla
 echo "flush privileges" | mysql -uroot -pislandora
 
 # Add web group, and put some users in it
-groupadd web
-usermod -a -G web apache
-usermod -a -G web vagrant
-usermod -a -G web tomcat
+sudo groupadd web
+sudo usermod -a -G web apache
+sudo usermod -a -G web vagrant
+sudo usermod -a -G web tomcat

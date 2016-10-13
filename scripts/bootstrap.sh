@@ -11,7 +11,10 @@ if [ ! -d "$DOWNLOAD_DIR" ]; then
 fi
 
 # Update
-yum -y update
+#yum -y update
+
+# setup timezone
+sudo timedatectl set-timezone America/New_York
 
 # utilities
 yum -y install wget bzip2 zip unzip ntp

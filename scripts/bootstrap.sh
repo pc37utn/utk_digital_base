@@ -48,7 +48,7 @@ sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /e
 
 
 # More helpful packages
-sudo yum -y install htop tree zsh 
+sudo yum -y install htop tree zsh mc
 
 # Set some params so it's non-interactive for the lamp-server install
 #debconf-set-selections <<< 'mysql-server mysql-server/root_password password islandora'
@@ -57,7 +57,7 @@ sudo yum -y install htop tree zsh
 #debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
 
 # Lamp server
-sudo yum -y install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient
+sudo yum -y install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient php-mcrypt php-mbstring
 sudo systemctl enable mariadb
 sudo systemctl enable httpd
 sudo systemctl start mariadb

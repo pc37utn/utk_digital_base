@@ -22,7 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", '3000']
-    vb.customize ["modifyvm", :id, "--cpus", "2"]   
+    vb.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
 
@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => shared_dir
   #config.vm.provision :shell, path: "./scripts/devtools.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/fits.sh", :args => shared_dir
-  #config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
   #config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir
   #config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
   #config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir

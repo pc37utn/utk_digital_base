@@ -29,12 +29,12 @@ yum -y install dkms
 # Git vim
 yum -y install git vim
 # add openjdk8 java and remove openjdk7
-yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+yum -y install java-1.8.0-openjdk
 echo '*******removing java openjdk7********'
 yum -y remove java-1.7.0-openjdk
 pause
 # Java 8 (Oracle)
-wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.rpm
+wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.rpm
 rpm -Uvh jdk-8*
 rm -f jdk-8*
 

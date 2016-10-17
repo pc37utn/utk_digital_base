@@ -14,7 +14,7 @@ git clone https://github.com/discoverygarden/basic-solr-config.git
 cd basic-solr-config
 git checkout 4.x
 cd islandora_transforms
-#sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' ./*xslt
+sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat#g' ./*xslt
 
 # dgi_gsearch_extensions
 cd /tmp
@@ -34,7 +34,7 @@ cp -v /tmp/gsearch/FgsBuild/fromsource/fedoragsearch.war /var/lib/tomcat/webapps
 # Sleep for 75 while Tomcat restart
 echo "Sleeping for 75 while Tomcat stack restarts"
 chown tomcat:tomcat /var/lib/tomcat/webapps/fedoragsearch.war
-sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat7
+sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat
 service tomcat restart
 sleep 75
 

@@ -12,10 +12,10 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 # Setup libfaac dependency
-sed -i '/^# deb.*multiverse/ s/^# //' /etc/apt/sources.list && apt-get update && apt-get install libfaac-dev -y --force-yes
+#sed -i '/^# deb.*multiverse/ s/^# //' /etc/apt/sources.list && apt-get update && apt-get install libfaac-dev -y --force-yes
 
 # Install dependencies
-apt-get install autoconf automake build-essential libass-dev libfreetype6-dev libgpac-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev yasm libx264-dev libmp3lame-dev unzip x264 libgsm1-dev libopencore-amrnb-dev libopencore-amrwb-dev libopenjpeg-dev libschroedinger-dev libspeex-dev libvpx-dev libxvidcore-dev libdc1394-22-dev -y --force-yes
+#apt-get install autoconf automake build-essential libass-dev libfreetype6-dev libgpac-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev yasm libx264-dev libmp3lame-dev unzip x264 libgsm1-dev libopencore-amrnb-dev libopencore-amrwb-dev libopenjpeg-dev libschroedinger-dev libspeex-dev libvpx-dev libxvidcore-dev libdc1394-22-dev -y --force-yes
 
 # Download FFmpeg
 if [ ! -f "$DOWNLOAD_DIR/ffmpeg-$FFMPEG_VERSION.tar.gz" ]; then

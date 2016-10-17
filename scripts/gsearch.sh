@@ -35,7 +35,7 @@ cp -v /tmp/gsearch/FgsBuild/fromsource/fedoragsearch.war /var/lib/tomcat/webapps
 echo "Sleeping for 75 while Tomcat stack restarts"
 chown tomcat:tomcat /var/lib/tomcat/webapps/fedoragsearch.war
 sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat
-service tomcat restart
+systemctl restart tomcat
 sleep 75
 
 # GSearch configurations
@@ -54,4 +54,4 @@ chown -hR tomcat:tomcat /var/lib/tomcat/webapps/fedoragsearch
 
 # Restart Tomcat
 chown tomcat:tomcat /var/lib/tomcat/webapps/fedoragsearch.war
-service tomcat restart
+systemctl restart tomcat

@@ -18,7 +18,7 @@ yum -y install php-gd php-devel php-xml php-soap php-curl
 yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler-utils
 pecl install uploadprogress
 sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
-# drush 6.7 from epel
+# drush 8.1 from rhel
 yum -y install drush
 #yum -y install mod_rewrite
 #a2enmod rewrite
@@ -26,7 +26,7 @@ systemctl restart httpd
 cd /var/www
 
 # Download Drupal
-drush dl drupal --drupal-project-rename=drupal
+drush dl drupal-7.x --drupal-project-rename=drupal
 
 # Permissions
 chown -R apache:apache drupal
@@ -70,8 +70,7 @@ read -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
 	ProxyPreserveHost On
 
 	<Proxy *>
-		Order deny,allow
-		Allow from all
+		Require all granted
 	</Proxy>
 
 	ProxyPass /fedora/get http://localhost:8080/fedora/get
@@ -113,7 +112,7 @@ drush -y en coder
 # php.ini templating
 cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini
 
-service httpd restart
+systemctl restart httpd
 
 # sites/default/files ownership
 chown -hR apache:apache "$DRUPAL_HOME"/sites/default/files

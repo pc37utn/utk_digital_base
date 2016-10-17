@@ -14,7 +14,7 @@ export APACHE_CONFIG_FILE=/etc/httpd/conf/httpd.conf
 
 
 # Drush and drupal deps
-yum -y install php-gd php-devel php-xml php-soap php-curl 
+yum -y install php-gd php-devel php-xml php-soap php-curl
 yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler-utils
 pecl install uploadprogress
 sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
@@ -22,7 +22,7 @@ sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
 yum -y install drush
 #yum -y install mod_rewrite
 #a2enmod rewrite
-service httpd reload
+systemctl restart httpd
 cd /var/www
 
 # Download Drupal
@@ -55,7 +55,7 @@ sed -i 's#<VirtualHost \*:80>#<VirtualHost \*:8000>#' $APACHE_CONFIG_FILE
 sed -i 's/Listen 80/Listen \*:8000/' /etc/httpd/conf.d/ports.conf
 
 sed -i "/Listen \*:8000/a \
-NameVirtualHost \*:8000" /etc/httpd/conf.d/ports.conf 
+NameVirtualHost \*:8000" /etc/httpd/conf.d/ports.conf
 
 read -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
 	ServerAlias islandora-vagrant

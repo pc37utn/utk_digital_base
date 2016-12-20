@@ -17,7 +17,7 @@ fi
 sudo timedatectl set-timezone America/New_York
 
 # utilities
-yum -y install wget bzip2 zip unzip ntp
+yum -y install wget mc mutt screen bzip2 zip unzip ntp
 
 # Build tools
 yum -y install gcc kernel-devel kernel-headers autoconf

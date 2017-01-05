@@ -9,10 +9,10 @@ if [ -f "$SHARED_DIR/configs/variables" ]; then
 fi
 
 # Set apt-get for non-interactive mode
-export DEBIAN_FRONTEND=noninteractive
+#export DEBIAN_FRONTEND=noninteractive
 
 # Dependencies
-apt-get install libafflib-dev afflib-tools libewf-dev ewf-tools -y --force-yes
+yum -y install afflib afflib-devel afftools libewf-devel ewftools libtool gcc-c++ libstd-c++
 
 # Clone and compile Sleuthkit
 cd /tmp

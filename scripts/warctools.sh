@@ -12,7 +12,7 @@ fi
 #export DEBIAN_FRONTEND=noninteractive
 
 # Dependencies
-yum -y install python-setuptools python-unittest2  --force-yes
+yum -y install python-setuptools python-unittest2
 
 # Clone and build warctools
 cd /tmp

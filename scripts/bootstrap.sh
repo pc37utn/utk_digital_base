@@ -20,7 +20,7 @@ sudo timedatectl set-timezone America/New_York
 yum -y install wget mc mutt screen bzip2 zip unzip ntp
 
 # Build tools
-yum -y install gcc kernel-devel kernel-headers autoconf yasm
+yum -y install gcc kernel-devel kernel-headers autoconf
 
 # add epel repo for dkms
 yum -y install epel-release

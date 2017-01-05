@@ -9,7 +9,7 @@ if [ -f "$SHARED_DIR/configs/variables" ]; then
 fi
 
 # Set apt-get for non-interactive mode
-export DEBIAN_FRONTEND=noninteractive
+#export DEBIAN_FRONTEND=noninteractive
 
 # Dependencies
 yum -y install python-setuptools python-unittest2  --force-yes

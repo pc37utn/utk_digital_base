@@ -94,7 +94,7 @@ fi
 rm /var/www/html/index.html
 
 # Cycle apache
-service httpd restart
+systemctl restart httpd
 
 # Make the modules directory
 if [ ! -d sites/all/modules ]; then

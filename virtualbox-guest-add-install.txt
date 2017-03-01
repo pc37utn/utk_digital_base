@@ -1,0 +1,16 @@
+#
+# downloads and installs guest additions -- inside of a running virtual machine
+# change version number to same as the virtualbox install on your desktop
+#
+# start vagrant up
+# do vagrant ssh
+# make sure you are in /home/vagrant
+# copy and chmod 700 this script there
+#
+wget http://download.virtualbox.org/virtualbox/5.1.12/VBoxGuestAdditions_5.1.12.iso
+sudo mkdir /media/VBoxGuestAdditions
+sudo mount -o loop,ro VBoxGuestAdditions_5.1.12.iso /media/VBoxGuestAdditions
+sudo sh /media/VBoxGuestAdditions/VBoxLinuxAdditions.run
+rm VBoxGuestAdditions_5.1.12.iso
+sudo umount /media/VBoxGuestAdditions
+sudo rmdir /media/VBoxGuestAdditions

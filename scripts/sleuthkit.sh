@@ -8,8 +8,6 @@ if [ -f "$SHARED_DIR/configs/variables" ]; then
   . "$SHARED_DIR"/configs/variables
 fi
 
-# Set apt-get for non-interactive mode
-#export DEBIAN_FRONTEND=noninteractive
 
 # Dependencies
 yum -y install afflib afflib-devel afftools libewf-devel ewftools libtool gcc-c++ libstd-c++

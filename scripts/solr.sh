@@ -27,8 +27,8 @@ chown -hR tomcat:tomcat "$SOLR_HOME"
 
 # Deploy Solr
 cp -v "/tmp/solr-$SOLR_VERSION/dist/solr-$SOLR_VERSION.war" "/var/lib/tomcat/webapps/solr.war"
-chown tomcat:tomcat /var/lib/tomcat/webapps/solr.war
-ln -s "$SOLR_HOME" /var/lib/tomcat/solr
+chown tomcat:tomcat $CATALINA_HOME/webapps/solr.war
+ln -s "$SOLR_HOME" $CATALINA_HOME/solr
 
 # Restart Tomcat
 systemctl restart tomcat

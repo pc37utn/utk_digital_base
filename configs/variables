@@ -4,7 +4,7 @@ HOME_DIR="/home/vagrant"
 
 # Shared comes from shell provisioner in VagrantFile
 DOWNLOAD_DIR="$SHARED_DIR/downloads"
-
+CATALINA_HOME="/usr/share/tomcat"
 DJATOKA_HOME="/usr/local/djatoka"
 
 FEDORA_HOME="/usr/local/fedora"

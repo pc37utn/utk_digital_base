@@ -46,7 +46,7 @@ fi
 # Deploy fcrepo
 chown tomcat:tomcat /var/lib/tomcat/webapps/fedora.war
 chown -hR tomcat:tomcat "$FEDORA_HOME"
-service tomcat restart
+systemctl restart tomcat
 echo "Sleeping while Fedora starts for the first time."
 sleep 45
 

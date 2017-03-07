@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Setup a user for Tomcat Manager
+# Setup a user for Tomcat Manager ( updated to "manager-gui")
 sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
 systemctl restart tomcat
 

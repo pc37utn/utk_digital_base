@@ -48,18 +48,18 @@ sudo alternatives  --set java /usr/java/jdk1.8.0_92/jre/bin/java
 
 # Set JAVA_HOME variable both now and for when the system restarts
 export JAVA_HOME
-JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
-echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment
+JAVA_HOME=/usr/lib/jvm/java
+echo "JAVA_HOME=$JAVA_HOME" >> /etc/profile.d/islandora.sht
 
 # Maven
-sudo yum -y install maven
+sudo yum -y install maven ant
 
 # Tomcat - from the epel repo
 sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
 
 # We still need this for the rest of the times Tomcat is run in the other build scripts
-sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat
+#sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat
 
 
 # More helpful packages

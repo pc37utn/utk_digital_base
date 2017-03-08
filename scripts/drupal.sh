@@ -44,18 +44,20 @@ drush user-password admin --password=islandora
 #ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 
 # Set document root
-sed -i "s|DocumentRoot /var/www/html$|DocumentRoot $DRUPAL_HOME|" $APACHE_CONFIG_FILE
-
+#sed -i "s|DocumentRoot /var/www/html$|DocumentRoot $DRUPAL_HOME|" $APACHE_CONFIG_FILE
+sed -i 's|DocumentRoot \"/var/www/html\"$|DocumentRoot \"/var/www/drupal\"|' $APACHE_CONFIG_FILE
+# Set document root directory section
+sed -i 's|<Directory \"/var/www/html\">$|<Directory \"/var/www/drupal\">|' $APACHE_CONFIG_FILE
 # Set override for drupal directory
 # Now inserting into VirtualHost container - whikloj (2015-04-30)
-if [ "$(grep -c "ProxyPass" $APACHE_CONFIG_FILE)" -eq 0 ]; then
+#if [ "$(grep -c "ProxyPass" $APACHE_CONFIG_FILE)" -eq 0 ]; then
 
-sed -i 's#<VirtualHost \*:80>#<VirtualHost \*:8000>#' $APACHE_CONFIG_FILE
+#sed -i 's#<VirtualHost \*:80>#<VirtualHost \*:8000>#' $APACHE_CONFIG_FILE
 
-sed -i 's/Listen 80/Listen \*:8000/' /etc/httpd/conf.d/ports.conf
+sed -i 's/Listen 80/Listen \*:8000/' $APACHE_CONFIG_FILE
 
-sed -i "/Listen \*:8000/a \
-NameVirtualHost \*:8000" /etc/httpd/conf.d/ports.conf
+#sed -i "/Listen \*:8000/a \
+#NameVirtualHost \*:8000" /etc/httpd/conf.d/ports.conf
 
 read -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
 	ServerAlias islandora-vagrant
@@ -85,9 +87,9 @@ read -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
 	ProxyPassReverse /adore-djatoka http://localhost:8080/adore-djatoka
 APACHE_CONFIG_TEXT
 
-sed -i "/<\/VirtualHost>/i $(echo "|	$APACHE_CONFIG" | tr '\n' '|')" $APACHE_CONFIG_FILE
-tr '|' '\n' < $APACHE_CONFIG_FILE > $APACHE_CONFIG_FILE.t 2> /dev/null; mv $APACHE_CONFIG_FILE{.t,}
-
+#sed -i "/<\/VirtualHost>/i $(echo "|	$APACHE_CONFIG" | tr '\n' '|')" $APACHE_CONFIG_FILE
+#tr '|' '\n' < $APACHE_CONFIG_FILE > $APACHE_CONFIG_FILE.t 2> /dev/null; mv $APACHE_CONFIG_FILE{.t,}
+cat $APACHE_CONFIG_FILE << $APACHE_CONFIG_TEXT
 fi
 
 # Torch the default index.html

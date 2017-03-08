@@ -61,6 +61,8 @@ sudo usermod -a -G tomcat vagrant
 # We still need this for the rest of the times Tomcat is run in the other build scripts
 #sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat
 
+# disable selinux
+sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
 
 # More helpful packages
 sudo yum -y install htop tree zsh mc

@@ -10,7 +10,7 @@ fi
 
 
 # Dependencies
-yum -y install afflib afflib-devel afftools libewf-devel ewftools libtool gcc-c++ libstd-c++
+yum -y install afflib afflib-devel afftools libewf-devel ewftools libtool gcc-c++ libstdc++ libstdc++-devel
 
 # Clone and compile Sleuthkit
 cd /tmp

@@ -89,8 +89,8 @@ APACHE_CONFIG_TEXT
 
 #sed -i "/<\/VirtualHost>/i $(echo "|	$APACHE_CONFIG" | tr '\n' '|')" $APACHE_CONFIG_FILE
 #tr '|' '\n' < $APACHE_CONFIG_FILE > $APACHE_CONFIG_FILE.t 2> /dev/null; mv $APACHE_CONFIG_FILE{.t,}
+
 cat $APACHE_CONFIG_TEXT >> $APACHE_CONFIG_FILE
-fi
 
 # Torch the default index.html
 rm /var/www/html/index.html

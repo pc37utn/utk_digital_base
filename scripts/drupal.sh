@@ -21,8 +21,15 @@ sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
 # drush 8.1 from rhel
 yum -y install drush
 #yum -y install mod_rewrite
-#a2enmod rewrite
+
+# copy pre-made httpd.conf
+cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
+# remove the default index.html
+rm /var/www/html/index.html
+
+# Cycle apache
 systemctl restart httpd
+
 cd /var/www
 
 # Download Drupal
@@ -37,10 +44,6 @@ cd drupal
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-development.org
 drush user-password admin --password=islandora
 
-# copy pre-made httpd.conf
-cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
-# remove the default index.html
-rm /var/www/html/index.html
 
 # Cycle apache
 systemctl restart httpd

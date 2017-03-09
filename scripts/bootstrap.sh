@@ -16,9 +16,6 @@ echo "export CATALINA_HOME="$CATALINA_HOME >> /etc/profile.d/islandora.sh
 echo "export FEDORA_HOME="$FEDORA_HOME >> /etc/profile.d/islandora.sh
 echo "export DRUPAL_HOME="$DRUPAL_HOME >> /etc/profile.d/islandora.sh
 
-# Update
-#yum -y update
-
 # setup timezone
 sudo timedatectl set-timezone America/New_York
 
@@ -36,8 +33,6 @@ yum -y install dkms
 yum -y install git vim
 # add openjdk8 java and remove openjdk7
 yum -y install java-1.8.0-openjdk
-echo '*******removing java openjdk7********'
-yum -y remove java-1.7.0-openjdk
 
 # Java 8 (Oracle)
 wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.rpm
@@ -57,19 +52,19 @@ sudo yum -y install maven ant
 # Tomcat - from the epel repo
 sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
+sudo systemctl enable tomcat
 
 # We still need this for the rest of the times Tomcat is run in the other build scripts
 #sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat
 
 # disable selinux
-sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
+sudo sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
+sudo touch /.autorelabel
 
 # More helpful packages
 sudo yum -y install htop tree zsh mc
 
 # Set some params so it's non-interactive for the lamp-server install
-#debconf-set-selections <<< 'mysql-server mysql-server/root_password password islandora'
-#debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password islandora'
 #debconf-set-selections <<< "postfix postfix/mailname string islandora-vagrant.org"
 #debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
 

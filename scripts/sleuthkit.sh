@@ -14,5 +14,7 @@ yum -y install afflib afflib-devel afftools libewf-devel ewftools libtool gcc-c+
 
 # Clone and compile Sleuthkit
 cd /tmp
-git clone https://github.com/sleuthkit/sleuthkit.git
-cd sleuthkit && ./bootstrap && ./configure && make && make install && ldconfig
+#git clone https://github.com/sleuthkit/sleuthkit.git
+#cd sleuthkit && ./bootstrap && ./configure && make && make install && ldconfig
+#note ( for both centos and ubuntu) Sleuthkit currently failing on HEAD tying to known good commit for now.
+git clone https://github.com/sleuthkit/sleuthkit.git && cd sleuthkit && git checkout 5f8a005475c3ea3e6547c3276aea381e9804c005 && ./bootstrap && ./configure && make && make install && ldconfig

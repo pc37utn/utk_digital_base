@@ -36,63 +36,10 @@ chmod -R g+w drupal
 cd drupal
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-development.org
 drush user-password admin --password=islandora
-#================================ NEXT HERE
-# Enable proxy module
-#ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
-#ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled/proxy_http.load
-#ln -s /etc/apache2/mods-available/proxy_html.load /etc/apache2/mods-enabled/proxy_html.load
-#ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 
-# Set document root
-#sed -i "s|DocumentRoot /var/www/html$|DocumentRoot $DRUPAL_HOME|" $APACHE_CONFIG_FILE
-sed -i 's|DocumentRoot \"/var/www/html\"$|DocumentRoot \"/var/www/drupal\"|' $APACHE_CONFIG_FILE
-# Set document root directory section
-sed -i 's|<Directory \"/var/www/html\">$|<Directory \"/var/www/drupal\">|' $APACHE_CONFIG_FILE
-# Set override for drupal directory
-# Now inserting into VirtualHost container - whikloj (2015-04-30)
-#if [ "$(grep -c "ProxyPass" $APACHE_CONFIG_FILE)" -eq 0 ]; then
-
-#sed -i 's#<VirtualHost \*:80>#<VirtualHost \*:8000>#' $APACHE_CONFIG_FILE
-
-sed -i 's/Listen 80/Listen \*:8000/' $APACHE_CONFIG_FILE
-
-#sed -i "/Listen \*:8000/a \
-#NameVirtualHost \*:8000" /etc/httpd/conf.d/ports.conf
-
-read -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
-	ServerAlias islandora-vagrant
-
-	<Directory ${DRUPAL_HOME}>
-		Options Indexes FollowSymLinks
-		AllowOverride All
-		Require all granted
-	</Directory>
-
-	ProxyRequests Off
-	ProxyPreserveHost On
-
-	<Proxy *>
-		Require all granted
-	</Proxy>
-
-	ProxyPass /fedora/get http://localhost:8080/fedora/get
-	ProxyPassReverse /fedora/get http://localhost:8080/fedora/get
-	ProxyPass /fedora/services http://localhost:8080/fedora/services
-	ProxyPassReverse /fedora/services http://localhost:8080/fedora/services
-	ProxyPass /fedora/describe http://localhost:8080/fedora/describe
-	ProxyPassReverse /fedora/describe http://localhost:8080/fedora/describe
-	ProxyPass /fedora/risearch http://localhost:8080/fedora/risearch
-	ProxyPassReverse /fedora/risearch http://localhost:8080/fedora/risearch
-	ProxyPass /adore-djatoka http://localhost:8080/adore-djatoka
-	ProxyPassReverse /adore-djatoka http://localhost:8080/adore-djatoka
-APACHE_CONFIG_TEXT
-
-#sed -i "/<\/VirtualHost>/i $(echo "|	$APACHE_CONFIG" | tr '\n' '|')" $APACHE_CONFIG_FILE
-#tr '|' '\n' < $APACHE_CONFIG_FILE > $APACHE_CONFIG_FILE.t 2> /dev/null; mv $APACHE_CONFIG_FILE{.t,}
-
-cat $APACHE_CONFIG_TEXT >> $APACHE_CONFIG_FILE
-
-# Torch the default index.html
+# copy pre-made httpd.conf
+cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
+# remove the default index.html
 rm /var/www/html/index.html
 
 # Cycle apache

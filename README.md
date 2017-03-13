@@ -2,10 +2,10 @@
 base box for islandora vagrant built on centos7
 
 
-# log into the VM
+#### log into the VM
 vagrant ssh
 
-# to finish what vagrant could not since it can't reboot
+#### to finish what vagrant could not since it can't reboot
 sudo shutdown -r now
 # wait several minutes and log into the VM
 vagrant ssh

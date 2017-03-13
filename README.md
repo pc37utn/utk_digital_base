@@ -17,11 +17,11 @@ this will make the final base box size much smaller
 
 #### zero out the drive to save space
 
- sudo dd if=/dev/zero of=/EMPTY bs=1M
- sudo rm -f /EMPTY
+-sudo dd if=/dev/zero of=/EMPTY bs=1M
+-sudo rm -f /EMPTY
 
 #### exit out to centos7_base_box directory
-exit
+-exit
 
 #### run this from inside the base box directory,
 it will save a copy of the modified box. (first, edit version number!!!!)

@@ -10,9 +10,9 @@ sudo shutdown -r now
 # wait several minutes and log into the VM
 vagrant ssh
 
-# check for left over install directories in /tmp
-# remove the ones for gsearch, solr, fcrepo, fits
-# this will make the final base box size much smaller
+#### check for left over install directories in /tmp
+remove the ones for gsearch, solr, fcrepo, fits
+this will make the final base box size much smaller
 
 # zero out the drive to save space
 sudo dd if=/dev/zero of=/EMPTY bs=1M

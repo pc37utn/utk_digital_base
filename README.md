@@ -19,7 +19,13 @@ base box for islandora vagrant built on centos7
 ## Connect
 
 Note: The supplied links apply only to this local vagrant system. They could vary in other installations. 
-This base box uses the current available centOS 7 packages and updates. 
+* This base box uses the current available centOS 7 packages and updates. 
+* to use this base box, a custom copy of islandora_vagrant should be made where the location of tomcat and the apache and tomcat users are different.
+
+In centOS 7
+1. tomcat is at /usr/share/tomcat, instead of /usr/share/tomcat7
+2. the tomcat user is "tomcat" instead of tomcat7
+3. the apache user is "apache", instead of www-data
 
 You can connect to the machine via the browser at [http://localhost:8000](http://localhost:8000).
 

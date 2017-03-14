@@ -61,20 +61,22 @@ ssh, scp, rsync:
 
 1. log into the VM
   - vagrant ssh
-2. finish what vagrant could not, relabeling the selinux entries, (since it cannot reboot itself)
+2. follow the instructions in virtualbox-guest-add-install.txt to add the guest-additions to your VM.
+
+3. finish what vagrant could not, relabeling the selinux entries, (since it cannot reboot itself)
   - sudo shutdown -r now
-3. wait several minutes and log into the VM
+4. wait several minutes and log into the VM
   - vagrant ssh
-4. check for leftover install directories in /tmp
+5. check for leftover install directories in /tmp
   - remove the ones for gsearch, solr, fcrepo, fits, etc. this will make the final base box size much smaller
-5. zero out the virtual drive to save space 
+6. zero out the virtual drive to save space 
   - sudo dd if=/dev/zero of=/EMPTY bs=1M
   - sudo rm -f /EMPTY
-6. exit out to centos7_base_box directory
+7. exit out to centos7_base_box directory
   - exit
-7. run this from inside the base box directory, it will save a copy of the modified box. (first, edit version number!!!!)
+8. run this from inside the base box directory, it will save a copy of the modified box. (first, edit version number!!!!)
   - vagrant package --output c7vbb-0.1.x.box
-8. move the box file to a local web server that the devel team and a modified islandora vagrant instance can access when it starts up.
+9. move the box file to a local web server that the devel team and a modified islandora vagrant instance can access when it starts up.
 
 ## Maintainers
 

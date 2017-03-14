@@ -1,35 +1,83 @@
 # centos7_base_box
+
+## Introduction
+
 base box for islandora vagrant built on centos7
 
+## Requirements
 
-#### log into the VM
-vagrant ssh
+1. [VirtualBox](https://www.virtualbox.org/)
+2. [Vagrant](http://www.vagrantup.com)
+3. [git](https://git-scm.com/)
 
-#### to finish what vagrant could not since it can't reboot
-sudo shutdown -r now
-# wait several minutes and log into the VM
-vagrant ssh
+## Use
 
-#### check for leftover install directories in /tmp
-remove the ones for gsearch, solr, fcrepo, fits, etc.
+1. `git clone https://github.com/pc37utn/centos7_base_box`
+2. `cd islandora_vagrant_base_box`
+3. `vagrant up`
 
-this will make the final base box size much smaller
+## Connect
 
-#### zero out the drive to save space
+Note: The supplied links apply only to this local vagrant system. They could vary in other installations. 
+This base box uses the current available centOS 7 packages and updates. 
 
-sudo dd if=/dev/zero of=/EMPTY bs=1M
+You can connect to the machine via the browser at [http://localhost:8000](http://localhost:8000).
 
-sudo rm -f /EMPTY
+The default Drupal login details are:
+  - username: admin
+  - password: islandora
 
-#### exit out to centos7_base_box directory
+MySQL:
+  - username: root
+  - password: islandora
 
-exit
+[Tomcat Manager:](http://localhost:8080/manager)
+  - username: islandora
+  - password: islandora
 
-#### run this from inside the base box directory,
-it will save a copy of the modified box. (first, edit version number!!!!)
+[Fedora:](http://localhost:8080/fedora/) ([Fedora Admin](http://localhost:8080/fedora/admin) | [Fedora Risearch](http://localhost:8080/fedora/risearch) | [Fedora Services](http://localhost:8080/fedora/services/))
+  - username: fedoraAdmin
+  - password: fedoraAdmin
 
- vagrant package --output c7vbb-0.1.x.box
+[GSearch:](http://localhost:8080/fedoragsearch/rest)
+  - username: fedoraAdmin
+  - password: fedoraAdmin
 
-#### move the box file 
+ssh, scp, rsync:
+  - username: vagrant
+  - password: vagrant
+  - Examples
+    - `ssh -p 2222 vagrant@localhost` or `vagrant ssh`
+    - `scp -P 2222 somefile.txt vagrant@localhost:/destination/path`
+    - `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/tmp`
 
-to a server that the islandora vagrant instance can access when it starts up.
+## Procedure to save the box
+
+1. log into the VM
+  - vagrant ssh
+2. finish what vagrant could not, relabeling the selinux entries, (since it cannot reboot itself)
+  - sudo shutdown -r now
+3. wait several minutes and log into the VM
+  - vagrant ssh
+4. check for leftover install directories in /tmp
+  - remove the ones for gsearch, solr, fcrepo, fits, etc. this will make the final base box size much smaller
+5. zero out the virtual drive to save space 
+  - sudo dd if=/dev/zero of=/EMPTY bs=1M
+  - sudo rm -f /EMPTY
+6. exit out to centos7_base_box directory
+  - exit
+7. run this from inside the base box directory, it will save a copy of the modified box. (first, edit version number!!!!)
+  - vagrant package --output c7vbb-0.1.x.box
+8. move the box file to a local web server that the devel team and a modified islandora vagrant instance can access when it starts up.
+
+## Maintainers
+
+* [Paul Cummins](https://github.com/pc37utn/)
+
+## Development
+
+Pull requests are welcome, as are use cases and suggestions.
+
+## License
+
+[GPLv3](http://www.gnu.org/licenses/gpl-3.0.txt)

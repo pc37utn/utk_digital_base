@@ -35,11 +35,11 @@ yum -y install git vim
 yum -y install java-1.8.0-openjdk
 
 # Java 8 (Oracle)
-wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.rpm
+wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u121-b13/jdk-8u121-linux-x64.rpm
 rpm -Uvh jdk-8*
 rm -f jdk-8*
 # make java 8 default with the alternatives command
-sudo alternatives  --set java /usr/java/jdk1.8.0_92/jre/bin/java
+sudo alternatives  --set java /usr/java/jdk1.8.0_121/jre/bin/java
 
 # Set JAVA_HOME variable both now and for when the system restarts
 export JAVA_HOME

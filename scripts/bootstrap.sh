@@ -54,19 +54,12 @@ sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
 sudo systemctl enable tomcat
 
-# We still need this for the rest of the times Tomcat is run in the other build scripts
-#sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat
-
 # disable selinux
 sudo sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
 sudo touch /.autorelabel
 
 # More helpful packages
 sudo yum -y install htop tree zsh mc
-
-# Set some params so it's non-interactive for the lamp-server install
-#debconf-set-selections <<< "postfix postfix/mailname string islandora-vagrant.org"
-#debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
 
 # Lamp server
 sudo yum -y install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient php-mcrypt php-mbstring

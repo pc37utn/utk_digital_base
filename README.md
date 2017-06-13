@@ -61,12 +61,15 @@ ssh, scp, rsync:
 
 1. log into the VM
   - vagrant ssh
+  - sudo yum update
 2. follow the instructions in virtualbox-guest-add-install.txt to add the guest-additions to your VM.
-
+  - run the script as sudo ./virtualbox-guest-add-install.txt
 3. finish what vagrant could not, relabeling the selinux entries, (since it cannot reboot itself)
   - sudo shutdown -r now
 4. wait several minutes and log into the VM
   - vagrant ssh
+  - cd $DRUPAL_HOME
+  - sudo drush pm-update
 5. check for leftover install directories in /tmp
   - remove the ones for gsearch, solr, fcrepo, fits, etc. this will make the final base box size much smaller
 6. zero out the virtual drive to save space 

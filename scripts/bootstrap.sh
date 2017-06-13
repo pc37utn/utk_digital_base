@@ -15,6 +15,11 @@ touch /etc/profile.d/islandora.sh
 echo "export CATALINA_HOME="$CATALINA_HOME >> /etc/profile.d/islandora.sh
 echo "export FEDORA_HOME="$FEDORA_HOME >> /etc/profile.d/islandora.sh
 echo "export DRUPAL_HOME="$DRUPAL_HOME >> /etc/profile.d/islandora.sh
+echo "export HOME_DIR=/home/vagrant" >> /etc/profile.d/islandora.sh
+echo "export SHARED_DIR=/vagrant" >> /etc/profile.d/islandora.sh
+echo "export DOWNLOAD_DIR=/downloads" >> /etc/profile.d/islandora.sh
+echo "export DJATOKA_HOME=/usr/local/djatoka" >> /etc/profile.d/islandora.sh
+echo "export SOLR_HOME=/usr/local/solr" >> /etc/profile.d/islandora.sh
 
 # setup timezone
 sudo timedatectl set-timezone America/New_York

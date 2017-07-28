@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # downloads and installs guest additions -- inside of a running virtual machine
 # change version number to same as the virtualbox install on your desktop

@@ -36,12 +36,13 @@ sudo yum -y install gcc kernel-devel kernel-headers autoconf
 
 # add epel repo for dkms
 sudo yum -y install epel-release
-sudo yum -y install dkms
+#sudo yum -y install dkms
 
 # add remi repo and enable php56
 sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum install yum-plugin-priorities
 sudo yum-config-manager --enable remi-php56
+
 # update everything
 sudo yum update
 # add Git vim

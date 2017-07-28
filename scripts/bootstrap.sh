@@ -25,7 +25,7 @@ echo "export SOLR_HOME=/usr/local/solr" >> /etc/profile.d/islandora.sh
 sudo timedatectl set-timezone America/New_York
 
 # utilities
-yum -y install wget mc mutt screen bzip2 zip unzip ntp psmisc
+yum -y install wget mc bzip2 zip unzip ntp psmisc
 
 # Build tools
 yum -y install gcc kernel-devel kernel-headers autoconf

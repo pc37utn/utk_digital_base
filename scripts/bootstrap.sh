@@ -29,24 +29,26 @@ sudo sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
 sudo touch /.autorelabel
 
 # utilities
-yum -y install wget mc bzip2 zip unzip ntp psmisc
+sudo yum -y install wget mc bzip2 zip unzip ntp psmisc
 
 # Build tools
-yum -y install gcc kernel-devel kernel-headers autoconf
+sudo yum -y install gcc kernel-devel kernel-headers autoconf
 
 # add epel repo for dkms
-yum -y install epel-release
-yum -y install dkms
+sudo yum -y install epel-release
+sudo yum -y install dkms
 
 # add remi repo and enable php56
-yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-yum-config-manager --enable remi-php56
-
+sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum install yum-plugin-priorities
+sudo yum-config-manager --enable remi-php56
+# update everything
+sudo yum update
 # add Git vim
-yum -y install git vim
+sudo yum -y install git vim
 
 # add openjdk8 java and remove openjdk7
-yum -y install java-1.8.0-openjdk
+sudo yum -y install java-1.8.0-openjdk
 
 # Java 8 (Oracle)
 wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b01/jdk-8u141-linux-x64.rpm
@@ -79,8 +81,8 @@ sudo systemctl enable httpd
 sudo systemctl start mariadb
 sudo systemctl start httpd
 
-usermod -a -G apache vagrant
-mysqladmin -u root password islandora
+sudo usermod -a -G apache vagrant
+sudo mysqladmin -u root password islandora
 
 echo "CREATE DATABASE fedora3" | mysql -uroot -pislandora
 echo "CREATE USER 'fedoraAdmin'@'localhost' IDENTIFIED BY 'fedoraAdmin'" | mysql -uroot -pislandora

@@ -54,7 +54,7 @@ sudo alternatives  --set java /usr/java/jdk1.8.0_121/jre/bin/java
 # Set JAVA_HOME variable both now and for when the system restarts
 export JAVA_HOME
 JAVA_HOME=/usr/lib/jvm/java
-echo "JAVA_HOME=$JAVA_HOME" >> /etc/profile.d/islandora.sht
+echo "JAVA_HOME=$JAVA_HOME" >> /etc/profile.d/islandora.sh
 
 # Maven
 sudo yum -y install maven ant

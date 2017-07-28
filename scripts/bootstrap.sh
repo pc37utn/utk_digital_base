@@ -24,6 +24,10 @@ echo "export SOLR_HOME=/usr/local/solr" >> /etc/profile.d/islandora.sh
 # setup timezone
 sudo timedatectl set-timezone America/New_York
 
+# disable selinux
+sudo sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
+sudo touch /.autorelabel
+
 # utilities
 yum -y install wget mc bzip2 zip unzip ntp psmisc
 
@@ -64,9 +68,6 @@ sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
 sudo systemctl enable tomcat
 
-# disable selinux
-sudo sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
-sudo touch /.autorelabel
 
 # More helpful packages
 sudo yum -y install htop tree zsh mc

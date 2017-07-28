@@ -34,13 +34,18 @@ yum -y install gcc kernel-devel kernel-headers autoconf
 yum -y install epel-release
 yum -y install dkms
 
-# Git vim
+# add remi repo and enable php56
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+yum-config-manager --enable remi-php56
+
+# add Git vim
 yum -y install git vim
+
 # add openjdk8 java and remove openjdk7
 yum -y install java-1.8.0-openjdk
 
 # Java 8 (Oracle)
-wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/jdk-8u131-linux-x64.rpm
+wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b01/jdk-8u141-linux-x64.rpm
 rpm -Uvh jdk-8*
 rm -f jdk-8*
 # make java 8 default with the alternatives command

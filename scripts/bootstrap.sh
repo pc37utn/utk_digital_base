@@ -20,6 +20,8 @@ echo "export SHARED_DIR=/vagrant" >> /etc/profile.d/islandora.sh
 echo "export DOWNLOAD_DIR=/downloads" >> /etc/profile.d/islandora.sh
 echo "export DJATOKA_HOME=/usr/local/djatoka" >> /etc/profile.d/islandora.sh
 echo "export SOLR_HOME=/usr/local/solr" >> /etc/profile.d/islandora.sh
+echo "export FITS_HOME=/usr/local/fits" >> /etc/profile.d/islandora.sh
+echo "export FITS_VERSION=1.1.1" >> /etc/profile.d/islandora.sh
 
 # setup timezone
 sudo timedatectl set-timezone America/New_York

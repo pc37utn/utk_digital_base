@@ -23,3 +23,5 @@ unzip "$DOWNLOAD_DIR/fits-$FITS_VERSION.zip" -d "$FITS_HOME"
 cd "$FITS_HOME/fits-$FITS_VERSION"
 chmod +x fits.sh
 chmod +x fits-env.sh
+cd "$FITS_HOME"
+sudo chown -R tomcat.tomcat *

@@ -44,7 +44,7 @@ chmod -R g+w collections
 
 # Do the install
 cd collections
-drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-development.org
+drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=digital-devel
 drush user-password admin --password=islandora
 
 

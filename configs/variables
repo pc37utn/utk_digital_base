@@ -17,4 +17,4 @@ FITS_VERSION="1.1.1"
 SOLR_HOME="/usr/local/solr"
 SOLR_VERSION="4.2.0"
 
-DRUPAL_HOME="/var/www/drupal"
+DRUPAL_HOME="/vhosts/digital/web/collections"

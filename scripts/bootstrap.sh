@@ -40,25 +40,25 @@ sudo yum -y install gcc kernel-devel kernel-headers autoconf
 sudo yum -y install epel-release
 #sudo yum -y install dkms
 
-# add remi repo and enable php56
+# add remi repo and enable php72
 sudo yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-plugin-priorities
-sudo yum-config-manager --enable remi-php56
+sudo yum-config-manager --enable remi-php72
 
 # update everything
 sudo yum update
 # add Git vim
 sudo yum -y install git vim
 
-# add openjdk8 java and remove openjdk7
+# add openjdk8 java 
 sudo yum -y install java-1.8.0-openjdk
 
 # Java 8 (Oracle)
-wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u201-b09/jdk-8u201-linux-x64.rpm
-rpm -Uvh jdk-8*
-rm -f jdk-8*
+#wget -q --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u201-b09/jdk-8u201-linux-x64.rpm
+#rpm -Uvh jdk-8*
+#rm -f jdk-8*
 # make java 8 default with the alternatives command
-sudo alternatives  --set java /usr/java/jdk1.8.0_201/jre/bin/java
+#sudo alternatives  --set java /usr/java/jdk1.8.0_201/jre/bin/java
 
 # Set JAVA_HOME variable both now and for when the system restarts
 export JAVA_HOME

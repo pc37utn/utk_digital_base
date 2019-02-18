@@ -5,4 +5,4 @@ sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>'
 systemctl restart tomcat
 
 # Set correct permissions on sites/default/files
-chmod -R 775 /var/www/drupal/sites/default/files
+chmod -R 775 /vhosts/digital/web/collections/sites/default/files

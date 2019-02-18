@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   config.vm.provider "virtualbox" do |v|
-    v.name = "IVBB Centos7 VM"
+    v.name = "utkbase Centos7 VM"
   end
   config.vm.hostname = "islandora"
 

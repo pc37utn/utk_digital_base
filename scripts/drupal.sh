@@ -16,8 +16,8 @@ export APACHE_CONFIG_FILE=/etc/httpd/conf/httpd.conf
 # Drush and drupal deps
 yum -y install php-gd php-devel php-xml php-soap php-curl
 yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler-utils
-pecl install uploadprogress
-sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
+#pecl install uploadprogress
+#sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
 # drush 8.1 from rhel
 yum -y install drush
 #yum -y install mod_rewrite
@@ -26,21 +26,27 @@ yum -y install drush
 cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
 # remove the default index.html
 rm /var/www/html/index.html
+#make web on large partition
+mkdir /vhosts
+cd /vhosts
+mkdir digital
+cd digital
+mkdir web
 
 # Cycle apache
 systemctl restart httpd
 
-cd /var/www
+cd /vhosts/digital/web
 
 # Download Drupal
-drush dl drupal-7.x --drupal-project-rename=drupal
+drush dl drupal-7.x --drupal-project-rename=collections
 
 # Permissions
-chown -R apache:apache drupal
-chmod -R g+w drupal
+chown -R apache:apache collections
+chmod -R g+w collections
 
 # Do the install
-cd drupal
+cd collections
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-development.org
 drush user-password admin --password=islandora
 
@@ -55,14 +61,14 @@ fi
 cd sites/all/modules
 
 # Modules
-drush dl devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries datepicker date
-drush -y en devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries datepicker_views
+drush dl devel imagemagick ctools jquery_update xmlsitemap views variable token libraries datepicker date
+drush -y en devel imagemagick ctools jquery_update xmlsitemap views variable token libraries datepicker_views
 
-drush dl coder-7.x-2.5
-drush -y en coder
+#drush dl coder-7.x-2.5
+#drush -y en coder
 
 # php.ini templating
-cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini
+#cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini
 
 systemctl restart httpd
 

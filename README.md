@@ -1,8 +1,8 @@
-# centos7_base_box
+# utk_digital_base
 
 ## Introduction
 
-base box for islandora vagrant built on centos7
+base box for islandora vagrant plus main server (digital) built on centos7
 
 ## Requirements
 
@@ -12,8 +12,8 @@ base box for islandora vagrant built on centos7
 
 ## Use
 
-1. `git clone https://github.com/pc37utn/centos7_base_box`
-2. `cd islandora_vagrant_base_box`
+1. `git clone https://github.com/pc37utn/utk_digital_base`
+2. `cd utk_digital_base`
 3. `vagrant up`
 
 ## Connect
@@ -21,6 +21,7 @@ base box for islandora vagrant built on centos7
 Note: The supplied links apply only to this local vagrant system. They could vary in other installations. 
 * This base box uses the current available centOS 7 packages and updates. 
 * to use this base box, a custom copy of islandora_vagrant should be made where the location of tomcat and the apache and tomcat users are different.
+
 
 In centOS 7
 1. tomcat is at /usr/share/tomcat, instead of /usr/share/tomcat7

@@ -22,6 +22,10 @@ echo "export DJATOKA_HOME=/usr/local/djatoka" >> /etc/profile.d/islandora.sh
 echo "export SOLR_HOME=/usr/local/solr" >> /etc/profile.d/islandora.sh
 echo "export FITS_HOME=/usr/local/fits" >> /etc/profile.d/islandora.sh
 echo "export FITS_VERSION=1.2.0" >> /etc/profile.d/islandora.sh
+echo "export CANTALOUPE_HOME="$CANTALOUPE_HOME >> /etc/profile.d/islandora.sh
+echo "export CANTALOUPE_CACHE="$CANTALOUPE_CACHE >> /etc/profile.d/islandora.sh
+echo "export CANTALOUPE_LOGS="$CANTALOUPE_LOGS >> /etc/profile.d/islandora.sh
+
 
 # setup timezone
 sudo timedatectl set-timezone America/New_York
@@ -78,7 +82,7 @@ sudo systemctl enable tomcat
 sudo yum -y install htop tree zsh mc
 
 # Lamp server
-sudo yum -y install mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient php-mcrypt php-mbstring
+sudo yum -y install httpd mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient php-mcrypt php-mbstring
 sudo systemctl enable mariadb
 sudo systemctl enable httpd
 sudo systemctl start mariadb

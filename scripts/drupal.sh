@@ -9,9 +9,10 @@ if [ -f "$SHARED_DIR/configs/variables" ]; then
 fi
 
 # Apache configuration file
-#export APACHE_CONFIG_FILE=/etc/apache2/sites-enabled/000-default.conf
 export APACHE_CONFIG_FILE=/etc/httpd/conf/httpd.conf
-
+mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.dist
+# copy pre-made httpd.conf
+cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
 
 # Drush and drupal deps
 yum -y install php-gd php-devel php-xml php-soap php-curl
@@ -22,10 +23,6 @@ yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler
 yum -y install drush
 #yum -y install mod_rewrite
 
-# copy pre-made httpd.conf
-cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
-# remove the default index.html
-rm /var/www/html/index.html
 #make web on large partition
 mkdir /vhosts
 cd /vhosts
@@ -61,11 +58,8 @@ fi
 cd sites/all/modules
 
 # Modules
-drush dl devel imagemagick ctools jquery_update xmlsitemap views variable token libraries datepicker date
-drush -y en devel imagemagick ctools jquery_update xmlsitemap views variable token libraries datepicker_views
-
-#drush dl coder-7.x-2.5
-#drush -y en coder
+drush dl devel imagemagick ctools jquery_update views variable token libraries datepicker date
+drush -y en devel imagemagick ctools jquery_update views variable token libraries datepicker_views
 
 # php.ini templating
 #cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini

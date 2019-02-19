@@ -32,3 +32,4 @@ ln -s "$SOLR_HOME" $CATALINA_HOME/solr
 
 # Restart Tomcat
 systemctl restart tomcat
+sleep 30

@@ -22,3 +22,4 @@ DRUPAL_HOME="/vhosts/digital/web/collections"
 CANTALOUPE_HOME="/usr/local/cantaloupe"
 CANTALOUPE_LOGS="/var/log/cantaloupe"
 CANTALOUPE_CACHE="/var/cache/cantaloupe"
+CANTALOUPE_VERSION=3.4.2

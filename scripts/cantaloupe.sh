@@ -27,7 +27,7 @@ fi
  
 if [ ! -f "$DOWNLOAD_DIR/Cantaloupe.zip" ]; then
   echo "Downloading Cantaloupe"
-  wget -q -O "$DOWNLOAD_DIR/Cantaloupe.zip" "https://github.com/medusa-project/cantaloupe/releases/download/v$CANTALOUPE_VERSION/Can
+  wget -q -O "$DOWNLOAD_DIR/Cantaloupe.zip" "https://github.com/medusa-project/cantaloupe/releases/download/v$CANTALOUPE_VERSION/Cantaloupe-$CANTALOUPE_VERSION.zip"
 fi
   
 cd /tmp || exit
@@ -50,7 +50,7 @@ chown -R tomcat:tomcat "$CANTALOUPE_CACHE"
 
 # Make tomcat/VM aware of cantaloup's config.
 # shellcheck disable=SC2016
-echo 'JAVA_OPTS="${JAVA_OPTS} -Dcantaloupe.config=/usr/local/cantaloupe/cantaloupe.properties -Dorg.apache.tomcat.util.buf.UDecoder.
+echo 'JAVA_OPTS="${JAVA_OPTS} -Dcantaloupe.config=/usr/local/cantaloupe/cantaloupe.properties -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true"' >> /etc/default/tomcat7
 
 # add cantaloupe proxy pass.
 if [ "$(grep -c "iiif" $APACHE_CONFIG_FILE)" -eq 0 ]; then

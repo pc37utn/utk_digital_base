@@ -3,7 +3,7 @@
 SHARED_DIR=$1
 
 # Apache configuration file
-export APACHE_CONFIG_FILE=/etc/apache2/sites-enabled/000-default.conf
+export APACHE_CONFIG_FILE=/etc/httpd/conf/httpd.conf
 
 
 if [ -f "$SHARED_DIR/configs/variables" ]; then
@@ -50,7 +50,7 @@ chown -R tomcat:tomcat "$CANTALOUPE_CACHE"
 
 # Make tomcat/VM aware of cantaloup's config.
 # shellcheck disable=SC2016
-echo 'JAVA_OPTS="${JAVA_OPTS} -Dcantaloupe.config=/usr/local/cantaloupe/cantaloupe.properties -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true"' >> /etc/default/tomcat7
+echo 'JAVA_OPTS="${JAVA_OPTS} -Dcantaloupe.config=/usr/local/cantaloupe/cantaloupe.properties -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true"' >> /etc/profile.d/islandora.sh
 
 # add cantaloupe proxy pass.
 if [ "$(grep -c "iiif" $APACHE_CONFIG_FILE)" -eq 0 ]; then
@@ -84,7 +84,7 @@ fi
 
 # Sleep for 60 while Tomcat restart
 echo "Sleeping for 60 while Tomcat stack restarts"
-service tomcat7 restart
+systemctl tomcat restart
 sleep 60
-service apache2 restart
+systemctl httpd restart
 sleep 5

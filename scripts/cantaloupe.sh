@@ -37,16 +37,16 @@ cd Cantaloupe-"$CANTALOUPE_VERSION" || exit
 mv -v ./* "$CANTALOUPE_HOME"
 
 # Deploy Cantaloupe
-cp -v "$CANTALOUPE_HOME"/Cantaloupe-"$CANTALOUPE_VERSION".war /var/lib/tomcat7/webapps/cantaloupe.war
-chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/cantaloupe.war
+cp -v "$CANTALOUPE_HOME"/Cantaloupe-"$CANTALOUPE_VERSION".war /var/lib/tomcat/webapps/cantaloupe.war
+chown tomcat:tomcat /var/lib/tomcat/webapps/cantaloupe.war
 
 # Libraries
 cp "$SHARED_DIR"/configs/cantaloupe.properties "$CANTALOUPE_HOME"
 cp "$SHARED_DIR"/configs/cantaloupe.delegates.rb "$CANTALOUPE_HOME"/delegates.rb
 
-chown -R tomcat7:tomcat7 "$CANTALOUPE_HOME"
-chown -R tomcat7:tomcat7 "$CANTALOUPE_LOGS"
-chown -R tomcat7:tomcat7 "$CANTALOUPE_CACHE"
+chown -R tomcat:tomcat "$CANTALOUPE_HOME"
+chown -R tomcat:tomcat "$CANTALOUPE_LOGS"
+chown -R tomcat:tomcat "$CANTALOUPE_CACHE"
 
 # Make tomcat/VM aware of cantaloup's config.
 # shellcheck disable=SC2016
@@ -69,18 +69,18 @@ fi
 
 
 #OpenJPEG from source
-apt-get -y update
-apt-get install -y openjpeg-tools libopenjpeg2 liblcms2-dev  libtiff-dev libpng-dev libz-dev.
-apt-get install -y cmake
-cd "$DOWNLOAD_DIR" || exit
-git clone https://github.com/uclouvain/openjpeg
-cd openjpeg/ || exit
-mkdir build
-cd build || exit
-cmake .. -DCMAKE_BUILD_TYPE=Release
-make
-make install
-ldconfig
+#apt-get -y update
+#apt-get install -y openjpeg-tools libopenjpeg2 liblcms2-dev  libtiff-dev libpng-dev libz-dev.
+#apt-get install -y cmake
+#cd "$DOWNLOAD_DIR" || exit
+#git clone https://github.com/uclouvain/openjpeg
+#cd openjpeg/ || exit
+#mkdir build
+#cd build || exit
+#cmake .. -DCMAKE_BUILD_TYPE=Release
+#make
+#make install
+#ldconfig
 
 # Sleep for 60 while Tomcat restart
 echo "Sleeping for 60 while Tomcat stack restarts"

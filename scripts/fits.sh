@@ -20,8 +20,10 @@ if [ ! -f "$DOWNLOAD_DIR/fits-$FITS_VERSION.zip" ]; then
 fi
 
 unzip "$DOWNLOAD_DIR/fits-$FITS_VERSION.zip" -d "$FITS_HOME"
-cd "$FITS_HOME/fits-$FITS_VERSION"
+cd "$FITS_HOME"
+ln -s "fits-$FITS_VERSION" fits
+cd fits
 chmod +x fits.sh
 chmod +x fits-env.sh
 cd "$FITS_HOME"
-sudo chown -R tomcat.tomcat *
+sudo chown -R tomcat.tomcat fits

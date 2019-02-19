@@ -15,7 +15,6 @@ mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.dist
 cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
 
 # Drush and drupal deps
-yum -y install php-gd php-devel php-xml php-soap php-curl
 yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler-utils
 #pecl install uploadprogress
 #sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini

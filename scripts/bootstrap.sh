@@ -26,6 +26,7 @@ echo "export CANTALOUPE_HOME="$CANTALOUPE_HOME >> /etc/profile.d/islandora.sh
 echo "export CANTALOUPE_CACHE="$CANTALOUPE_CACHE >> /etc/profile.d/islandora.sh
 echo "export CANTALOUPE_LOGS="$CANTALOUPE_LOGS >> /etc/profile.d/islandora.sh
 
+source /etc/profile.d/islandora.sh
 
 # setup timezone
 sudo timedatectl set-timezone America/New_York
@@ -40,7 +41,7 @@ sudo yum -y install wget mc bzip2 zip unzip ntp psmisc
 # Build tools
 sudo yum -y install gcc kernel-devel kernel-headers autoconf
 
-# add epel repo for dkms
+# add epel repo
 sudo yum -y install epel-release
 #sudo yum -y install dkms
 

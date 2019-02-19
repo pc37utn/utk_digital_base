@@ -76,3 +76,4 @@ cp "$SHARED_DIR"/configs/filter-drupal.xml "$FEDORA_HOME"/server/config
 
 # Restart Tomcat
 systemctl restart tomcat
+sleep 30

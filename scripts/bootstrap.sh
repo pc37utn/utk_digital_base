@@ -82,7 +82,8 @@ sudo systemctl enable tomcat
 sudo yum -y install htop tree zsh mc
 
 # Lamp server
-sudo yum -y install httpd mariadb-server php php-cli php-xml php-mysql httpd-devel httpd mysqlclient php-mcrypt php-mbstring
+sudo yum -y install httpd mariadb-server httpd-devel mysqlclient 
+sudo yum -y install php php-devel php-cli php-mysql php-mcrypt php-mbstring php-gd php-xml php-soap php-curl
 sudo systemctl enable mariadb
 sudo systemctl enable httpd
 sudo systemctl start mariadb

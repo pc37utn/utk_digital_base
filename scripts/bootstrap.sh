@@ -74,7 +74,7 @@ sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
 sudo systemctl enable tomcat
 # Setup a user for Tomcat Manager ( updated to "manager-gui")
-sudo sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
+sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
 sudo systemctl restart tomcat
 sudo sleep 30
 

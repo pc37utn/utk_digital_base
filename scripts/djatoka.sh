@@ -40,4 +40,4 @@ systemctl restart tomcat
 sleep 30
 
 # Logging
-cp "$SHARED_DIR"/configs/log4j.properties /var/lib/tomcat/webapps/adore-djatoka/WEB-INF/classes
+# cp "$SHARED_DIR"/configs/log4j.properties /var/lib/tomcat/webapps/adore-djatoka/WEB-INF/classes

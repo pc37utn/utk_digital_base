@@ -71,5 +71,5 @@ systemctl restart httpd
 chown -hR apache:apache "$DRUPAL_HOME"/sites/default/files
 
 # Run cron
-cd "$DRUPAL_HOME"/sites/all/modules
-drush cron
+#cd "$DRUPAL_HOME"/sites/all/modules
+#drush cron

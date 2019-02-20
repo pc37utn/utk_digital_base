@@ -28,6 +28,9 @@ echo "export CANTALOUPE_LOGS="$CANTALOUPE_LOGS >> /etc/profile.d/islandora.sh
 
 source /etc/profile.d/islandora.sh
 
+# add epel repo
+sudo yum -y install epel-release
+
 # update everything
 sudo yum update
 
@@ -39,10 +42,7 @@ sudo sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
 sudo touch /.autorelabel
 
 # utilities and build tools
-sudo yum -y install wget mc bzip2 zip unzip ntp psmisc gcc kernel-devel kernel-headers autoconf git vim htop tree mc zsh net-tools
-
-# add epel repo
-sudo yum -y install epel-release
+sudo yum -y install wget mc zip unzip ntp psmisc gcc kernel-devel kernel-headers autoconf git vim htop tree mc zsh net-tools
 
 # add remi repo and enable php72
 sudo yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm

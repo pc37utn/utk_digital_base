@@ -15,7 +15,8 @@ if [ ! -d "$FEDORA_HOME" ]; then
 fi
 chown tomcat:tomcat "$FEDORA_HOME"
 chmod g-w "$FEDORA_HOME"
-
+sudo systemctl restart tomcat
+sleep 30
 echo "Downloading Fedora"
 if [ ! -f "$DOWNLOAD_DIR/fcrepo-installer-3.8.1.jar" ]; then
   wget -q -O "/tmp/fcrepo-installer-3.8.1.jar" "https://github.com/fcrepo3/fcrepo/releases/download/v3.8.1/fcrepo-installer-3.8.1.jar"
@@ -44,9 +45,9 @@ if [ $? -ne 0 ]; then
 fi
 
 # Deploy fcrepo
-chown tomcat:tomcat /var/lib/tomcat/webapps/fedora.war
-chown -hR tomcat:tomcat "$FEDORA_HOME"
-systemctl restart tomcat
+sudo chown tomcat:tomcat /var/lib/tomcat/webapps/fedora.war
+sudo chown -hR tomcat:tomcat "$FEDORA_HOME"
+sudo systemctl restart tomcat
 echo "Sleeping while Fedora starts for the first time."
 sleep 45
 

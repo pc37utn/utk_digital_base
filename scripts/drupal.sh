@@ -19,6 +19,7 @@ yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler
 #pecl install uploadprogress
 #sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
 pear install Console_Table
+sudo systemctl restart httpd
 # drush 8.1 from rhel
 yum -y install drush
 #yum -y install mod_rewrite

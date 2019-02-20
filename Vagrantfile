@@ -37,8 +37,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
-  #config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
-  #config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
+ # config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
+ # config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/devtools.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/cantaloupe.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/post.sh"

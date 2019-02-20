@@ -39,7 +39,7 @@ sudo sed -i 's|SELINUX=enforcing$|SELINUX=disabled|' /etc/selinux/config
 sudo touch /.autorelabel
 
 # utilities and build tools
-sudo yum -y install wget mc bzip2 zip unzip ntp psmisc gcc kernel-devel kernel-headers autoconf git vim htop tree mc zsh
+sudo yum -y install wget mc bzip2 zip unzip ntp psmisc gcc kernel-devel kernel-headers autoconf git vim htop tree mc zsh net-tools
 
 # add epel repo
 sudo yum -y install epel-release

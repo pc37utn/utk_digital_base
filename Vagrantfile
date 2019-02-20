@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   shared_dir = "/vagrant"
 
   config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => shared_dir
-  #config.vm.provision :shell, path: "./scripts/devtools.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/devtools.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/fits.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir

@@ -73,6 +73,10 @@ sudo yum -y install maven ant
 sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
 sudo systemctl enable tomcat
+# Setup a user for Tomcat Manager ( updated to "manager-gui")
+sudo sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
+sudo systemctl restart tomcat
+sudo sleep 30
 
 sudo usermod -a -G apache vagrant
 sudo mysqladmin -u root password islandora
@@ -80,6 +84,7 @@ sudo mysqladmin -u root password islandora
 echo "CREATE DATABASE fedora3" | mysql -uroot -pislandora
 echo "CREATE USER 'fedoraAdmin'@'localhost' IDENTIFIED BY 'fedoraAdmin'" | mysql -uroot -pislandora
 echo "GRANT ALL ON fedora3.* TO 'fedoraAdmin'@'localhost'" | mysql -uroot -pislandora
+echo "CREATE DATABASE drupal7" | mysql -uroot -pislandora
 echo "flush privileges" | mysql -uroot -pislandora
 
 # Add web group, and put some users in it

@@ -76,7 +76,7 @@ sudo systemctl enable tomcat
 sudo systemctl stop tomcat
 sleep 30
 # Setup a user for Tomcat Manager ( updated to "manager-gui")
-sudo sed -i '$i<role rolename="manager-gui"/>' /etc/tomcat7/tomcat-users.xml
+sudo sed -i '$i<role rolename="manager-gui"/>' /etc/tomcat/tomcat-users.xml
 sudo sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
 sudo systemctl restart tomcat
 

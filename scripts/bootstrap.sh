@@ -73,10 +73,12 @@ sudo yum -y install maven ant
 sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
 sudo systemctl enable tomcat
+sudo systemctl stop tomcat
+sleep 30
 # Setup a user for Tomcat Manager ( updated to "manager-gui")
-sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
+sudo sed -i '$i<role rolename="manager-gui"/>' /etc/tomcat7/tomcat-users.xml
+sudo sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
 sudo systemctl restart tomcat
-sudo sleep 30
 
 sudo usermod -a -G apache vagrant
 sudo mysqladmin -u root password islandora

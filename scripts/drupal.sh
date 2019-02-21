@@ -48,7 +48,7 @@ cd collections
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=digital-devel
 drush user-password admin --password=islandora
 
-
+sudo chown apache.apache sites/default/settings.php
 # Cycle apache
 systemctl restart httpd
 

@@ -43,11 +43,11 @@ sudo touch /.autorelabel
 
 # utilities and build tools
 sudo yum -y install wget mc zip unzip ntp psmisc gcc kernel-devel kernel-headers autoconf git vim htop tree mc zsh net-tools
-
-# add remi repo and enable php72
+# recent (Jan 2019) changes have kept php 7.2 from working.
+# add remi repo and enable php56
 sudo yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-plugin-priorities
-sudo yum-config-manager --enable remi-php72
+sudo yum-config-manager --enable remi-php56
 
 
 # Lamp server

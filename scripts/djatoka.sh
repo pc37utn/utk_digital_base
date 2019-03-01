@@ -26,6 +26,7 @@ mv -v ./* "$DJATOKA_HOME"
 
 # Symlink kdu_compress for Large Image Solution Pack
 ln -s "$DJATOKA_HOME"/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
+ln -s "$DJATOKA_HOME"/bin/Linux-x86-64/kdu_expand /usr/bin/kdu_expand
 
 # Deploy Djatoka
 # cp -v "$DJATOKA_HOME"/dist/adore-djatoka.war /var/lib/tomcat/webapps
@@ -35,9 +36,9 @@ ln -s "$DJATOKA_HOME"/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
 cp "$SHARED_DIR"/configs/kdu_libs.conf /etc/ld.so.conf.d/kdu_libs.conf
 
 # Sleep for 60 while Tomcat restart
-echo "Sleeping for 30 while Tomcat stack restarts"
-systemctl restart tomcat
-sleep 30
+#echo "Sleeping for 30 while Tomcat stack restarts"
+#systemctl restart tomcat
+#sleep 30
 
 # Logging
 # cp "$SHARED_DIR"/configs/log4j.properties /var/lib/tomcat/webapps/adore-djatoka/WEB-INF/classes

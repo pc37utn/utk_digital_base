@@ -68,19 +68,8 @@ tr '|' '\n' < $APACHE_CONFIG_FILE > $APACHE_CONFIG_FILE.t 2> /dev/null; mv $APAC
 fi
 
 
-#OpenJPEG from source
-#apt-get -y update
-#apt-get install -y openjpeg-tools libopenjpeg2 liblcms2-dev  libtiff-dev libpng-dev libz-dev.
-#apt-get install -y cmake
-#cd "$DOWNLOAD_DIR" || exit
-#git clone https://github.com/uclouvain/openjpeg
-#cd openjpeg/ || exit
-#mkdir build
-#cd build || exit
-#cmake .. -DCMAKE_BUILD_TYPE=Release
-#make
-#make install
-#ldconfig
+#OpenJPEG from centos equivalent
+yum -y install openjpeg openjpeg-devel openjpeg2 openjpeg2-devel libpng-devel libpng libtiff libtiff-devel libtiff-tools
 
 # Sleep for 60 while Tomcat restart
 echo "Sleeping for 60 while Tomcat stack restarts"

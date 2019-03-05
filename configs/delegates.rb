@@ -1,9 +1,8 @@
 ##
-# Cantaloupe ruby delegates file for Islandora Vagrant base box
-# @modifiedby: Diego Pino, dpino@metro.org
+# Cantaloupe ruby delegates file for utk_digital_base, made from
+# similar Islandora Vagrant base box script
+# 
 #
-# code may change from version to version. See the "Upgrading" section of
-# Tested with 3.4.2.
 #
 ##
 

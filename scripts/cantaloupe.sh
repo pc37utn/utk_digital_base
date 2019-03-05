@@ -42,7 +42,7 @@ chown tomcat:tomcat /var/lib/tomcat/webapps/cantaloupe.war
 
 # Libraries
 cp "$SHARED_DIR"/configs/cantaloupe.properties "$CANTALOUPE_HOME"
-cp "$SHARED_DIR"/configs/cantaloupe.delegates.rb "$CANTALOUPE_HOME"/delegates.rb
+cp "$SHARED_DIR"/configs/delegates.rb "$CANTALOUPE_HOME"/delegates.rb
 
 chown -R tomcat:tomcat "$CANTALOUPE_HOME"
 chown -R tomcat:tomcat "$CANTALOUPE_LOGS"

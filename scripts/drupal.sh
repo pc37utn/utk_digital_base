@@ -59,7 +59,7 @@ fi
 cd sites/all/modules
 
 # Modules
-drush dl devel imagemagick ctools jquery_update views variable token libraries datepicker date
+drush dl devel imagemagick ctools jquery_update views variable token libraries datepicker date redirect
 drush -y en devel imagemagick ctools jquery_update views variable token libraries datepicker_views
 
 # php.ini templating

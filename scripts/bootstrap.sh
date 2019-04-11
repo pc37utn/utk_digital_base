@@ -25,6 +25,9 @@ echo "export FITS_VERSION=1.2.0" >> /etc/profile.d/islandora.sh
 echo "export CANTALOUPE_HOME="$CANTALOUPE_HOME >> /etc/profile.d/islandora.sh
 echo "export CANTALOUPE_CACHE="$CANTALOUPE_CACHE >> /etc/profile.d/islandora.sh
 echo "export CANTALOUPE_LOGS="$CANTALOUPE_LOGS >> /etc/profile.d/islandora.sh
+echo "export JAVA_OPTS="$JAVA_OPTS -Dcantaloupe.config=/usr/local/cantaloupe/cantaloupe.properties \
+ -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true" >> /etc/profile.d/islandora.sh
+
 
 source /etc/profile.d/islandora.sh
 

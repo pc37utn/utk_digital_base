@@ -19,10 +19,10 @@ yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler
 #pecl install uploadprogress
 #sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
 #pear install Console_Table
-sudo systemctl restart httpd
+systemctl restart httpd
 # drush 8.1 from rhel
-sudo yum -y install drush
-#yum -y install mod_rewrite
+yum -y install drush
+yum -y install mod_rewrite
 
 #make web on large partition
 mkdir /vhosts
@@ -32,8 +32,11 @@ cd digital
 mkdir web
 
 # Cycle apache
-sudo systemctl restart httpd
+systemctl restart httpd
 
+cd /vhosts/digital
+chown -R apache:apache web
+chmod -R g+w web
 cd /vhosts/digital/web
 
 # Download Drupal
@@ -47,10 +50,14 @@ chmod -R g+w collections
 cd collections
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=digital-devel
 drush user-password admin --password=islandora
-
+cd /vhosts/digital/web/collections/sites/default
+mkdir files
+chown -R apache.apache files
+chmod _r g+w files
 chown apache.apache /vhosts/digital/web/collections/sites/default/settings.php
 # Cycle apache
 systemctl restart httpd
+cd /vhosts/digital/web/collections
 
 # Make the modules directory
 if [ ! -d sites/all/modules ]; then

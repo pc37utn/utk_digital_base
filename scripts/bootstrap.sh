@@ -44,15 +44,15 @@ sudo touch /.autorelabel
 
 # utilities and build tools
 sudo yum -y install wget mc zip unzip ntp psmisc gcc kernel-devel kernel-headers autoconf git vim htop tree mc zsh net-tools
+# Lamp server
+sudo yum -y install httpd mariadb-server httpd-devel mysqlclient 
+
 # recent (Jan 2019) changes have kept php 7.2 from working but have now been fixed
 # add remi repo and enable php72
 sudo yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-plugin-priorities
 sudo yum-config-manager --enable remi-php72
 
-
-# Lamp server
-sudo yum -y install httpd mariadb-server httpd-devel mysqlclient 
 sudo yum -y install php php-devel php-cli php-mysql php-mcrypt php-mbstring php-gd php-xml php-soap php-curl
 sudo systemctl enable mariadb
 sudo systemctl enable httpd

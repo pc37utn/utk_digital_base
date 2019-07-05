@@ -56,10 +56,15 @@ echo 'JAVA_OPTS="${JAVA_OPTS} -Dcantaloupe.config=/usr/local/cantaloupe/cantalou
 if [ "$(grep -c "iiif" $APACHE_CONFIG_FILE)" -eq 0 ]; then
 
 read -r -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
-     ProxyPass /iiif/2 http://localhost:8080/cantaloupe/iiif/2
-     ProxyPassReverse /iiif/2 http://localhost:8080/cantaloupe/iiif/2
+   AllowEncodedSlashes NoDecode
 
-     RequestHeader set X-Forwarded-Port 8000
+   ProxyPass /iiif/2 http://localhost:8080/cantaloupe/iiif/2 nocanon
+   ProxyPassReverse /iiif/2 http://localhost:8080/cantaloupe/iiif/2
+
+   RequestHeader set X-Forwarded-Port 8000
+   RequestHeader set X-Forwarded-Proto "http" env=HTTP
+   RequestHeader set X-Forwarded-Path "/"
+   
 APACHE_CONFIG_TEXT
 
 sed -i "/<\/VirtualHost>/i $(echo "|$APACHE_CONFIG" | tr '\n' '|')" $APACHE_CONFIG_FILE

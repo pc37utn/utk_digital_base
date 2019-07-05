@@ -21,7 +21,7 @@ yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler
 #pear install Console_Table
 sudo systemctl restart httpd
 # drush 8.1 from rhel
-yum -y install drush
+sudo yum -y install drush
 #yum -y install mod_rewrite
 
 #make web on large partition
@@ -32,7 +32,7 @@ cd digital
 mkdir web
 
 # Cycle apache
-systemctl restart httpd
+sudo systemctl restart httpd
 
 cd /vhosts/digital/web
 

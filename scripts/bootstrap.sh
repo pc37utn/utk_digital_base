@@ -33,7 +33,7 @@ source /etc/profile.d/islandora.sh
 sudo yum -y install epel-release
 
 # update everything
-sudo yum update
+sudo yum -y update
 
 # setup timezone
 sudo timedatectl set-timezone America/New_York
@@ -52,7 +52,7 @@ sudo yum -y install httpd mariadb-server httpd-devel mysqlclient
 sudo yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-plugin-priorities
 sudo yum-config-manager --enable remi-php72
-
+sudo yum -y update
 sudo yum -y install php php-devel php-cli php-mysql php-mcrypt php-mbstring php-gd php-xml php-soap php-curl
 sudo systemctl enable mariadb
 sudo systemctl enable httpd

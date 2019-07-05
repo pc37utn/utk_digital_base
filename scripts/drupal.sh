@@ -59,8 +59,8 @@ fi
 cd sites/all/modules
 
 # Modules
-drush dl devel imagemagick ctools jquery_update views variable token libraries datepicker date redirect
-drush -y en devel imagemagick ctools jquery_update views variable token libraries datepicker_views
+drush dl devel imagemagick ctools jquery_update views variable token libraries datepicker date
+sudo drush -y en devel imagemagick ctools jquery_update views variable token libraries datepicker_views
 
 # php.ini templating
 #cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini

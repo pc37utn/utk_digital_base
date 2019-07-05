@@ -18,10 +18,10 @@ echo "export DRUPAL_HOME="$DRUPAL_HOME >> /etc/profile.d/islandora.sh
 echo "export HOME_DIR=/home/vagrant" >> /etc/profile.d/islandora.sh
 echo "export SHARED_DIR=/vagrant" >> /etc/profile.d/islandora.sh
 echo "export DOWNLOAD_DIR=/downloads" >> /etc/profile.d/islandora.sh
-echo "export DJATOKA_HOME=/usr/local/djatoka" >> /etc/profile.d/islandora.sh
+#echo "export DJATOKA_HOME=/usr/local/djatoka" >> /etc/profile.d/islandora.sh
 echo "export SOLR_HOME=/usr/local/solr" >> /etc/profile.d/islandora.sh
 echo "export FITS_HOME=/usr/local/fits" >> /etc/profile.d/islandora.sh
-echo "export FITS_VERSION=1.2.0" >> /etc/profile.d/islandora.sh
+echo "export FITS_VERSION=1.1.0" >> /etc/profile.d/islandora.sh
 echo "export CANTALOUPE_HOME="$CANTALOUPE_HOME >> /etc/profile.d/islandora.sh
 echo "export CANTALOUPE_CACHE="$CANTALOUPE_CACHE >> /etc/profile.d/islandora.sh
 echo "export CANTALOUPE_LOGS="$CANTALOUPE_LOGS >> /etc/profile.d/islandora.sh
@@ -44,11 +44,11 @@ sudo touch /.autorelabel
 
 # utilities and build tools
 sudo yum -y install wget mc zip unzip ntp psmisc gcc kernel-devel kernel-headers autoconf git vim htop tree mc zsh net-tools
-# recent (Jan 2019) changes have kept php 7.2 from working.
-# add remi repo and enable php56
+# recent (Jan 2019) changes have kept php 7.2 from working but have now been fixed
+# add remi repo and enable php72
 sudo yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-plugin-priorities
-sudo yum-config-manager --enable remi-php56
+sudo yum-config-manager --enable remi-php72
 
 
 # Lamp server

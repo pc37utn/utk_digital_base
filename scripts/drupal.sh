@@ -47,7 +47,7 @@ chown -R apache:apache collections
 chmod -R g+w collections
 
 # Do the install
-cd collections
+cd /vhosts/digital/web/collections
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=digital-devel
 drush user-password admin --password=islandora
 cd /vhosts/digital/web/collections/sites/default
@@ -55,8 +55,6 @@ mkdir files
 chown -R apache.apache files
 chmod _r g+w files
 chown apache.apache /vhosts/digital/web/collections/sites/default/settings.php
-# Cycle apache
-systemctl restart httpd
 cd /vhosts/digital/web/collections
 
 # Make the modules directory

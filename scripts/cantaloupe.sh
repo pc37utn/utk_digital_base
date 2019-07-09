@@ -61,10 +61,10 @@ read -r -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
    ProxyPass /iiif/2 http://localhost:8080/cantaloupe/iiif/2 nocanon
    ProxyPassReverse /iiif/2 http://localhost:8080/cantaloupe/iiif/2
 
-   RequestHeader set X-Forwarded-Port 8000
+   #RequestHeader set X-Forwarded-Port 8000
    RequestHeader set X-Forwarded-Proto "http" env=HTTP
    RequestHeader set X-Forwarded-Path "/"
-   
+
 APACHE_CONFIG_TEXT
 
 sed -i "/<\/VirtualHost>/i $(echo "|$APACHE_CONFIG" | tr '\n' '|')" $APACHE_CONFIG_FILE
@@ -77,8 +77,8 @@ fi
 yum -y install openjpeg openjpeg-devel openjpeg2 openjpeg2-devel libpng-devel libpng libtiff libtiff-devel libtiff-tools
 
 # Sleep for 60 while Tomcat restart
-echo "Sleeping for 60 while Tomcat stack restarts"
-systemctl tomcat restart
-sleep 60
-systemctl httpd restart
+echo "Sleeping for 30 while Tomcat stack restarts"
+systemctl restart tomcat
+sleep 30
+systemctl restart httpd
 sleep 5

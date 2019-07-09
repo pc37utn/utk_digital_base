@@ -18,7 +18,7 @@ cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
 yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler-utils
 #pecl install uploadprogress
 #sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
-#pear install Console_Table
+pear install Console_Table
 systemctl restart httpd
 # drush 8.1 from rhel
 yum -y install drush
@@ -64,7 +64,7 @@ fi
 cd sites/all/modules
 
 # Modules
-drush dl devel imagemagick ctools jquery_update views variable token libraries datepicker date
+sudo drush dl devel imagemagick ctools jquery_update views variable token libraries datepicker date
 sudo drush -y en devel imagemagick ctools jquery_update views variable token libraries datepicker_views
 
 # php.ini templating

@@ -9,9 +9,6 @@ fi
 if [ ! -d "$DOWNLOAD_DIR" ]; then
   mkdir -p "$DOWNLOAD_DIR"
 fi
-if [ ! -d "$DRUPAL_HOME" ]; then
-  mkdir -p "$DRUPAL_HOME"
-fi
 # for setting the env variables in a non-vagrant startup
 # make etc/profile.d/islandora.sh
 touch /etc/profile.d/islandora.sh

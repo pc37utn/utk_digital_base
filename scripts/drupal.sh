@@ -53,7 +53,7 @@ drush user-password admin --password=islandora
 cd /vhosts/digital/web/collections/sites/default
 mkdir files
 chown -R apache.apache files
-chmod _r g+w files
+chmod -r g+w files
 chown apache.apache /vhosts/digital/web/collections/sites/default/settings.php
 cd /vhosts/digital/web/collections
 
@@ -64,11 +64,11 @@ fi
 cd sites/all/modules
 
 # Modules
-sudo drush dl devel imagemagick ctools jquery_update views variable token libraries datepicker date
-sudo drush -y en devel imagemagick ctools jquery_update views variable token libraries datepicker_views
+sudo drush dl imagemagick ctools jquery_update views variable token libraries datepicker date
+sudo drush -y en imagemagick ctools jquery_update views variable token libraries 
 
 # php.ini templating
-#cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini
+cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini
 
 systemctl restart httpd
 

@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
   config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
-  config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
+  config.vm.network :forwarded_port, guest: 80, host: 8000 # Apache
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", '3500']
@@ -32,15 +32,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "./scripts/fits.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
+ # config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
+ # config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir
+ # config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
+ # config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
+ # config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
  # config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
  # config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
  # config.vm.provision :shell, path: "./scripts/devtools.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/cantaloupe.sh", :args => shared_dir
+ # config.vm.provision :shell, path: "./scripts/cantaloupe.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/post.sh"
 
   if File.exist?("./scripts/custom.sh") then

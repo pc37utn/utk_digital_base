@@ -9,6 +9,9 @@ fi
 if [ ! -d "$DOWNLOAD_DIR" ]; then
   mkdir -p "$DOWNLOAD_DIR"
 fi
+if [ ! -d "$DRUPAL_HOME" ]; then
+  mkdir -p "$DRUPAL_HOME"
+fi
 # for setting the env variables in a non-vagrant startup
 # make etc/profile.d/islandora.sh
 touch /etc/profile.d/islandora.sh
@@ -75,7 +78,7 @@ sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
 sudo systemctl enable tomcat
 sudo systemctl stop tomcat
-sleep 30
+sleep 20
 # Setup a user for Tomcat Manager ( updated to "manager-gui")
 sudo sed -i '$i<role rolename="manager-gui"/>' /etc/tomcat/tomcat-users.xml
 sudo sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml

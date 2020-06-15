@@ -74,6 +74,7 @@ sudo yum -y install maven ant
 sudo yum -y install tomcat tomcat-admin-webapps
 sudo usermod -a -G tomcat vagrant
 sudo systemctl enable tomcat
+sudo systemctl start tomcat
 sudo systemctl stop tomcat
 sleep 20
 # Setup a user for Tomcat Manager ( updated to "manager-gui")

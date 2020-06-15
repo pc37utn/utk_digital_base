@@ -14,6 +14,15 @@ mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.dist
 # copy pre-made httpd.conf
 cp -v "$SHARED_DIR"/configs/httpd.conf /etc/httpd/conf/httpd.conf
 
+#make web on large partition
+mkdir /vhosts
+cd /vhosts
+mkdir digital
+cd digital
+mkdir web
+
+systemctl restart httpd
+
 # Drush and drupal deps
 yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler-utils
 #pecl install uploadprogress
@@ -24,12 +33,6 @@ systemctl restart httpd
 yum -y install drush
 yum -y install mod_rewrite
 
-#make web on large partition
-mkdir /vhosts
-cd /vhosts
-mkdir digital
-cd digital
-mkdir web
 
 # Cycle apache
 systemctl restart httpd

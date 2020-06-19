@@ -5,11 +5,11 @@ HOME_DIR="/home/vagrant"
 # Shared comes from shell provisioner in VagrantFile
 DOWNLOAD_DIR="/vagrant/downloads"
 CATALINA_HOME="/usr/share/tomcat"
-#DJATOKA_HOME="/usr/local/djatoka"
+DJATOKA_HOME="/usr/local/djatoka"
 
 FEDORA_HOME="/usr/local/fedora"
 
-#FFMPEG_VERSION=1.1.4
+FFMPEG_VERSION=1.1.4
 
 FITS_HOME="/usr/local/fits"
 FITS_VERSION="1.1.0"

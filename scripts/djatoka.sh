@@ -24,6 +24,7 @@ tar -xzvf adore-djatoka.tar.gz
 cd adore-djatoka-1.1
 mv -v ./* "$DJATOKA_HOME"
 
+
 # Symlink kdu_compress for Large Image Solution Pack
 ln -s "$DJATOKA_HOME"/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
 ln -s "$DJATOKA_HOME"/bin/Linux-x86-64/kdu_expand /usr/bin/kdu_expand

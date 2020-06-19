@@ -78,8 +78,9 @@ sudo systemctl start tomcat
 sudo systemctl stop tomcat
 sleep 20
 # Setup a user for Tomcat Manager ( updated to "manager-gui")
-sudo sed -i '$i<role rolename="manager-gui"/>' /etc/tomcat/tomcat-users.xml
-sudo sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
+#sudo sed -i '$i<role rolename="manager-gui"/>' /etc/tomcat/tomcat-users.xml
+#sudo sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
+sudo cp "$SHARED_DIR"/configs/tomcat-users.xml /etc/tomcat/
 sudo systemctl restart tomcat
 
 sudo usermod -a -G apache vagrant

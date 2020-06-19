@@ -27,7 +27,7 @@ systemctl restart httpd
 yum -y install php-pecl-imagick ImageMagick perl-Image-Exiftool bibutils poppler-utils
 #pecl install uploadprogress
 #sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php.ini
-pear install Console_Table
+#pear install Console_Table
 systemctl restart httpd
 # drush 8.1 from rhel
 yum -y install drush
@@ -43,21 +43,21 @@ chmod -R g+w web
 cd /vhosts/digital/web
 
 # Download Drupal
-drush dl drupal-7.x --drupal-project-rename=collections
+sudo drush dl drupal-7.x --drupal-project-rename=collections
 
 # Permissions
-chown -R apache:apache collections
-chmod -R g+w collections
+sudo chown -R apache:apache collections
+sudo chmod -R g+w collections
 
 # Do the install
 cd /vhosts/digital/web/collections
-drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=digital-devel
-drush user-password admin --password=islandora
+sudo drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=digital-devel
+sudo drush user-password admin --password=islandora
 cd /vhosts/digital/web/collections/sites/default
-mkdir files
-chown -R apache.apache files
-chmod -r g+w files
-chown apache.apache /vhosts/digital/web/collections/sites/default/settings.php
+sudo mkdir files
+sudo chown -R apache.apache files
+sudo chmod -r g+w files
+sudo chown apache.apache /vhosts/digital/web/collections/sites/default/settings.php
 cd /vhosts/digital/web/collections
 
 # Make the modules directory
@@ -67,8 +67,8 @@ fi
 cd sites/all/modules
 
 # Modules
-sudo drush dl imagemagick ctools jquery_update views variable token libraries datepicker date
-sudo drush -y en imagemagick ctools jquery_update views variable token libraries 
+sudo drush dl imagemagick ctools jquery_update views variable token libraries
+sudo drush -y en imagemagick ctools jquery_update views variable token libraries
 
 # php.ini templating
 cp -v "$SHARED_DIR"/configs/php.ini /etc/php.ini

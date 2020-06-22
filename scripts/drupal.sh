@@ -43,7 +43,7 @@ chmod -R g+w web
 cd /vhosts/digital/web
 
 # Download Drupal
-sudo drush dl drupal-7.x --drupal-project-rename=collections
+sudo drush dl drupal-7 --drupal-project-rename=collections
 
 # Permissions
 sudo chown -R apache:apache collections

@@ -47,11 +47,11 @@ sudo yum -y install wget mc zip unzip ntp psmisc gcc kernel-devel kernel-headers
 # Lamp server
 sudo yum -y install httpd mariadb-server httpd-devel mysqlclient 
 
-# recent (Jan 2019) changes have kept php 7.2 from working but have now been fixed
-# add remi repo and enable php72
+#
+# add remi repo and enable php73
 sudo yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-plugin-priorities
-sudo yum-config-manager --enable remi-php72
+sudo yum-config-manager --enable remi-php73
 sudo yum -y update
 sudo yum -y install php php-devel php-cli php-mysql php-mcrypt php-mbstring php-gd php-xml php-soap php-curl
 sudo systemctl enable mariadb
@@ -78,8 +78,6 @@ sudo systemctl start tomcat
 sudo systemctl stop tomcat
 sleep 20
 # Setup a user for Tomcat Manager ( updated to "manager-gui")
-#sudo sed -i '$i<role rolename="manager-gui"/>' /etc/tomcat/tomcat-users.xml
-#sudo sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat/tomcat-users.xml
 sudo cp "$SHARED_DIR"/configs/tomcat-users.xml /etc/tomcat/
 sudo systemctl restart tomcat
 

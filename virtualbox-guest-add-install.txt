@@ -8,10 +8,10 @@
 # make sure you are in /home/vagrant
 # copy and chmod 700 this script there
 #
-wget http://download.virtualbox.org/virtualbox/6.1.10/VBoxGuestAdditions_6.1.10.iso
+wget http://download.virtualbox.org/virtualbox/6.1.16/VBoxGuestAdditions_6.1.16.iso
 sudo mkdir /media/VBoxGuestAdditions
-sudo mount -o loop,ro VBoxGuestAdditions_6.1.10.iso /media/VBoxGuestAdditions
+sudo mount -o loop,ro VBoxGuestAdditions_6.1.16.iso /media/VBoxGuestAdditions
 sudo sh /media/VBoxGuestAdditions/VBoxLinuxAdditions.run
-rm VBoxGuestAdditions_6.1.10.iso
+rm VBoxGuestAdditions_6.1.16.iso
 sudo umount /media/VBoxGuestAdditions
 sudo rmdir /media/VBoxGuestAdditions
